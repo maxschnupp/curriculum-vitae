@@ -1,9 +1,11 @@
-import { CSSProperties, useEffect, useState } from "react";
+import React, { CSSProperties, useEffect, useState } from "react";
 import { fill, reverse, zip } from "lodash";
 
 interface ISunProps {
   isLightModeOn: boolean;
   containerWidth: number;
+  sunMoving: boolean;
+  setSunMoving: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 interface ISunPosition {
@@ -11,9 +13,9 @@ interface ISunPosition {
   y: number;
 }
 
-const Sun = ({ isLightModeOn, containerWidth }: ISunProps): JSX.Element => {
+const Sun = ({ isLightModeOn, containerWidth, sunMoving, setSunMoving }: ISunProps): JSX.Element => {
   const [sunPositionTarget, setSunPositionTarget] = useState({ x: 100, y: 0 });
-  const [sunMoving, setSunMoving] = useState(false);
+  
   const pastCenterPoint = sunPositionTarget.x > containerWidth / 2;
 
   const [previousIsLightModeOn, setPreviousIsLightModeOn] =
