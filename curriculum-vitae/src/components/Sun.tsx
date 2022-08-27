@@ -14,7 +14,7 @@ interface ISunPosition {
 }
 
 const Sun = ({ isLightModeOn, containerWidth, sunMoving, setSunMoving }: ISunProps): JSX.Element => {
-  const [sunPositionTarget, setSunPositionTarget] = useState({ x: 100, y: 0 });
+  const [sunPositionTarget, setSunPositionTarget] = useState({ x: 50, y: 0 });
   
   const pastCenterPoint = sunPositionTarget.x > containerWidth / 2;
 
@@ -29,18 +29,18 @@ const Sun = ({ isLightModeOn, containerWidth, sunMoving, setSunMoving }: ISunPro
   }, [isLightModeOn]);
 
   const getYOffset = (containerWidth: number, x: number) => {
-    const xWidthAdjusted = x / (containerWidth - 200);
+    const xWidthAdjusted = x / (containerWidth - 50);
     const radians = xWidthAdjusted * Math.PI;
     const sunCurve = Math.sin(radians);
     return sunCurve * 200;
   };
 
   const getNewPath = (containerWidth: number): ISunPosition[] => {
-    const totalDistance = containerWidth - 300;
+    const totalDistance = containerWidth - 250;
     const stepSize = totalDistance / 15;
     console.log({ totalDistance, stepSize });
     const allXs: number[] = fill(Array(15), 0).map(
-      (_ : any, idx: number) => idx * stepSize + 100
+      (_ : any, idx: number) => idx * stepSize + 50
     );
     console.log({ allXs });
     const allYs: number[] = allXs.map((elem: number) =>

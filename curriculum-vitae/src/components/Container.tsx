@@ -30,7 +30,7 @@ const Container = ({
     display: 'flex', 
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: lightModeOn ? "white" : "darkblue",
+    backgroundColor: lightModeOn ? "#d1edf2" : " #191970",
     transition: "all 2s ease",
     color: lightModeOn ? "black" : "white",
     overflowY: "scroll",
