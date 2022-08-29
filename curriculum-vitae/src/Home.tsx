@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import Container from "./components/Container";
-import Typography from "./components/Typography";
+import SideLabel from './components/SideLabel';
 import { useMousePosition } from "./useMousePosition";
 import Sun from "./components/Sun";
 import Content from "./components/Content";
@@ -31,34 +31,12 @@ const Home = (): JSX.Element => {
       ref={containerRef}
       onScroll={onContainerScroll}
     >
-      <div
-        style={{
-          writingMode: "vertical-rl",
-          textOrientation: "upright",
-          position: "absolute",
-          fontSize: '12px',
-          left: 0,
-          maxWidth: '20px',
-          top: '15%',
-          fontFamily: "Roboto Mono, monospaced",
-        }}
-      >
-        scroll on the left for english
-      </div>
-      <div
-        style={{
-          writingMode: "vertical-rl",
-          textOrientation: "upright",
-          position: "absolute",
-          fontSize: '12px',
-          right: 0,
-          maxWidth: '20px',
-          top: '15%',
-          fontFamily: "Roboto Mono, monospaced",
-        }}
-      >
-        rechts scrollen für deutsch
-      </div>
+      <SideLabel displaySide="left">
+          scroll left for english
+      </SideLabel>
+      <SideLabel displaySide="right">
+          rechts scrollen für deutsch
+      </SideLabel>
       {containerWidth && (
         <Sun
           isLightModeOn={lightModeOn}

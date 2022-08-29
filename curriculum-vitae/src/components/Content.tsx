@@ -4,12 +4,13 @@ import Typography from "./Typography";
 const Content = ({ isInEnglish }: { isInEnglish: boolean }) => (
   <div
     style={{
-      zIndex: 100,
+      paddingLeft: '25px',
+      paddingRight: '25px',
     }}
   >
     <BilingualTypography
       size={"huge"}
-      germanText={"Maximilian Schnupp - Voll Stack Entwickler"}
+      germanText={"Max Schnupp - Voll Stack Entwickler"}
       englishText={"Max Schnupp - Full Stack Developer"}
       isInEnglish={isInEnglish}
     />

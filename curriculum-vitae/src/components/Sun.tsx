@@ -15,11 +15,8 @@ interface ISunPosition {
 
 const Sun = ({ isLightModeOn, containerWidth, sunMoving, setSunMoving }: ISunProps): JSX.Element => {
   const [sunPositionTarget, setSunPositionTarget] = useState({ x: 50, y: 0 });
-  
-  const pastCenterPoint = sunPositionTarget.x > containerWidth / 2;
 
-  const [previousIsLightModeOn, setPreviousIsLightModeOn] =
-    useState<boolean>(false);
+  const [previousIsLightModeOn, setPreviousIsLightModeOn] = useState(false);
 
   useEffect(() => {
     if (isLightModeOn !== previousIsLightModeOn) {
@@ -86,8 +83,8 @@ const Sun = ({ isLightModeOn, containerWidth, sunMoving, setSunMoving }: ISunPro
   const style: CSSProperties = {
     height: "200px",
     width: "200px",
-    backgroundColor: pastCenterPoint ? "#DEDEDE" : "#FFDF00",
-    transition: "all 0.1s ease",
+    backgroundColor: !isLightModeOn ? "#9C1304" : "#FFDF00",
+    transition: "top 0.1s ease, left 0.1s ease, background-color 2s ease",
     borderRadius: "50%",
     top: `${300 - sunPositionTarget.y}px`,
     left: `${sunPositionTarget.x}px`,

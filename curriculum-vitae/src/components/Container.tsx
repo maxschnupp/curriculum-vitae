@@ -1,4 +1,9 @@
-import { ForwardedRef, forwardRef, MutableRefObject } from "react";
+import {
+  CSSProperties,
+  ForwardedRef,
+  forwardRef,
+  MutableRefObject,
+} from "react";
 import GoogleFontLoader from "react-google-font-loader";
 
 type ContainerWrapperProps = {
@@ -12,6 +17,7 @@ type ContainerProps = ContainerWrapperProps & {
 const Container = ({
   lightModeOn,
   children,
+  onScroll,
   forwardedRef,
   ...htmlAttributes
 }: ContainerProps): JSX.Element => {
@@ -27,15 +33,20 @@ const Container = ({
     left: "0px",
     paddingLeft: "20px",
     paddingTop: "20px",
-    display: 'flex', 
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
     backgroundColor: lightModeOn ? "#d1edf2" : " #191970",
-    transition: "all 2s ease",
+    transition: "all 2s linear",
     color: lightModeOn ? "black" : "#DEDEDE",
-    overflowY: "scroll",
     zIndex: -2,
   });
+
+  const scrollContainerStyles = {
+    position: "relative",
+    overflowY: "scroll",
+    width: '100%',
+  } as CSSProperties;
 
   const ref = forwardedRef as MutableRefObject<HTMLDivElement>;
 
@@ -62,7 +73,7 @@ const Container = ({
         ref={ref}
         style={containerStyles({ lightModeOn })}
       >
-        {children}
+        <div style={scrollContainerStyles} onScroll={onScroll}>{children}</div>
       </div>
     </>
   );
