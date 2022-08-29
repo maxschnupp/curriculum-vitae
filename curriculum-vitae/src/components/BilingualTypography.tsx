@@ -41,7 +41,7 @@ const Typography = ({
     case "huge":
       return <h3 style={style}>{displayEnglish ? englishText : germanText}</h3>;
     case "big":
-      return <h5 style={style}>{displayEnglish ? englishText : germanText}</h5>;
+      return <h4 style={style}>{displayEnglish ? englishText : germanText}</h4>;
     default:
       return <p style={style}>{displayEnglish ? englishText : germanText}</p>;
   }

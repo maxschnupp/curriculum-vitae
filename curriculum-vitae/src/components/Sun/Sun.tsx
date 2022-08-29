@@ -1,6 +1,6 @@
 import React, { CSSProperties, useEffect, useState } from "react";
-import { fill, reverse, zip } from "lodash";
-
+import {getOrderedPath} from './sunUtils';
+export const SUN_DIAMETER = 200;
 interface ISunProps {
   isLightModeOn: boolean;
   containerWidth: number;
@@ -8,13 +8,8 @@ interface ISunProps {
   setSunMoving: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-interface ISunPosition {
-  x: number;
-  y: number;
-}
-
 const Sun = ({ isLightModeOn, containerWidth, sunMoving, setSunMoving }: ISunProps): JSX.Element => {
-  const [sunPositionTarget, setSunPositionTarget] = useState({ x: 50, y: 0 });
+  const [sunPositionTarget, setSunPositionTarget] = useState({ x: 0, y: 0 });
 
   const [previousIsLightModeOn, setPreviousIsLightModeOn] = useState(false);
 
@@ -25,41 +20,6 @@ const Sun = ({ isLightModeOn, containerWidth, sunMoving, setSunMoving }: ISunPro
     }
   }, [isLightModeOn]);
 
-  const getYOffset = (containerWidth: number, x: number) => {
-    const xWidthAdjusted = x / (containerWidth - 50);
-    const radians = xWidthAdjusted * Math.PI;
-    const sunCurve = Math.sin(radians);
-    return sunCurve * 200;
-  };
-
-  const getNewPath = (containerWidth: number): ISunPosition[] => {
-    const totalDistance = containerWidth - 250;
-    const stepSize = totalDistance / 15;
-    console.log({ totalDistance, stepSize });
-    const allXs: number[] = fill(Array(15), 0).map(
-      (_ : any, idx: number) => idx * stepSize + 50
-    );
-    console.log({ allXs });
-    const allYs: number[] = allXs.map((elem: number) =>
-      getYOffset(containerWidth, elem)
-    );
-    const path = zip(allXs, allYs).map(
-      (coord: [number | undefined, number | undefined]) => ({
-        x: coord[0],
-        y: coord[1],
-      })
-    ) as ISunPosition[];
-    return path;
-  };
-
-  const getOrderedPath = (
-    containerWidth: number,
-    isLightModeOn: boolean
-  ): ISunPosition[] => {
-    const pathUnordered = getNewPath(containerWidth);
-    if (!isLightModeOn) return pathUnordered;
-    return reverse(pathUnordered);
-  };
 
   const moveSun = () => {
     if (sunMoving) return;
@@ -81,8 +41,8 @@ const Sun = ({ isLightModeOn, containerWidth, sunMoving, setSunMoving }: ISunPro
   };
 
   const style: CSSProperties = {
-    height: "200px",
-    width: "200px",
+    height: `${SUN_DIAMETER}px`,
+    width: `${SUN_DIAMETER}px`,
     backgroundColor: !isLightModeOn ? "#9C1304" : "#FFDF00",
     transition: "top 0.1s ease, left 0.1s ease, background-color 2s ease",
     borderRadius: "50%",
@@ -90,6 +50,7 @@ const Sun = ({ isLightModeOn, containerWidth, sunMoving, setSunMoving }: ISunPro
     left: `${sunPositionTarget.x}px`,
     position: "fixed",
     zIndex: -1,
+    padding: 0,
   };
   return <div style={style} />;
 };

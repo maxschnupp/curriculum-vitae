@@ -1,13 +1,9 @@
 import {useEffect, useState} from "react";
+import { Position } from "../types";
 
-interface IPosition {
-    x: number,
-    y: number,
-}
+export const useMousePosition = () : Position => {
 
-export const useMousePosition = () : IPosition => {
-
-    const [coordinates, setCoordinates] = useState<IPosition>({x:0, y:0});
+    const [coordinates, setCoordinates] = useState<Position>({x:0, y:0});
 
     useEffect(() => {
         // 👇️ get global mouse coordinates
