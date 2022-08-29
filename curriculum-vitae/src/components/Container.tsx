@@ -32,7 +32,7 @@ const Container = ({
     alignItems: 'center',
     backgroundColor: lightModeOn ? "#d1edf2" : " #191970",
     transition: "all 2s ease",
-    color: lightModeOn ? "black" : "white",
+    color: lightModeOn ? "black" : "#DEDEDE",
     overflowY: "scroll",
     zIndex: -2,
   });

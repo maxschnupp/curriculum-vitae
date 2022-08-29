@@ -4,7 +4,7 @@ interface ITypographyProps {
 }
 
 const Typography = ({ size, children }: ITypographyProps) => {
-  const style = { fontFamily: "Roboto Mono, monospaced", maxWidth: "600px", zIndex: 0 };
+  const style = { fontFamily: "Roboto Mono, monospaced", maxWidth: "600px"};
 
   switch (size) {
     case "huge":

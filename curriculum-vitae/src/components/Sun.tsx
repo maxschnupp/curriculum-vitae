@@ -86,7 +86,7 @@ const Sun = ({ isLightModeOn, containerWidth, sunMoving, setSunMoving }: ISunPro
   const style: CSSProperties = {
     height: "200px",
     width: "200px",
-    backgroundColor: pastCenterPoint ? "grey" : "#FFDF00",
+    backgroundColor: pastCenterPoint ? "#DEDEDE" : "#FFDF00",
     transition: "all 0.1s ease",
     borderRadius: "50%",
     top: `${300 - sunPositionTarget.y}px`,

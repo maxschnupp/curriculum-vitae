@@ -3,6 +3,7 @@ import Container from "./components/Container";
 import Typography from "./components/Typography";
 import { useMousePosition } from "./useMousePosition";
 import Sun from "./components/Sun";
+import Content from "./components/Content";
 const Home = (): JSX.Element => {
   const [side, setSide] = useState<"left" | "right">("left");
   const [lightModeOn, setLightModeOn] = useState(true);
@@ -30,6 +31,34 @@ const Home = (): JSX.Element => {
       ref={containerRef}
       onScroll={onContainerScroll}
     >
+      <div
+        style={{
+          writingMode: "vertical-rl",
+          textOrientation: "upright",
+          position: "absolute",
+          fontSize: '12px',
+          left: 0,
+          maxWidth: '20px',
+          top: '15%',
+          fontFamily: "Roboto Mono, monospaced",
+        }}
+      >
+        scroll on the left for english
+      </div>
+      <div
+        style={{
+          writingMode: "vertical-rl",
+          textOrientation: "upright",
+          position: "absolute",
+          fontSize: '12px',
+          right: 0,
+          maxWidth: '20px',
+          top: '15%',
+          fontFamily: "Roboto Mono, monospaced",
+        }}
+      >
+        rechts scrollen für deutsch
+      </div>
       {containerWidth && (
         <Sun
           isLightModeOn={lightModeOn}
@@ -38,50 +67,7 @@ const Home = (): JSX.Element => {
           setSunMoving={setSunMoving}
         />
       )}
-      <Typography size={"huge"}>
-        Maximilian Schnupp - Full Stack Developer
-      </Typography>
-      <Typography size={"big"}>I Am A:</Typography>
-      <Typography size={"medium"}>
-        {`${containerWidth}, ${x}`}
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </Typography>
-      <Typography size={"big"}>ETc Etc:</Typography>
-      <Typography size={"medium"}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </Typography>
-      <Typography size={"big"}>ETc Etc:</Typography>
-      <Typography size={"medium"}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </Typography>
-      <Typography size={"big"}>ETc Etc:</Typography>
-      <Typography size={"medium"}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </Typography>
+      <Content isInEnglish={lightModeOn} />
     </Container>
   );
 };
